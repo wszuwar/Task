@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/v1/task")
 public class TaskController {
@@ -35,7 +35,7 @@ public class TaskController {
             service.deleteTask(taskId);
     }
     @RequestMapping(method = RequestMethod.PUT, value = "upgradeTask")
-    public TaskDto upgradeTask(TaskDto taskDto){
+    public TaskDto upgradeTask(@RequestBody TaskDto taskDto){
         return taskMapper.mapToTaskDto(service.saveTask(taskMapper.mapToTask(taskDto)));
     }
     @RequestMapping(method = RequestMethod.POST, value = "createTask",consumes = APPLICATION_JSON_VALUE)
