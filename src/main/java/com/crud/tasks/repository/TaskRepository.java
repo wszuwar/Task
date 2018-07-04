@@ -17,10 +17,12 @@ public interface TaskRepository extends CrudRepository<Task, Long> {
     @Override
     Task save(Task task);
 
-
     Optional<Task> findById(Long id);
 
     @Override
     void delete(Long taskId);
+
+    @Override
+   long count();
 
 }
