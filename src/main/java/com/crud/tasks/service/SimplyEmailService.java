@@ -25,14 +25,15 @@ public class SimplyEmailService {
             createMailMessage(mail).setCc(mail.getToCC());
             LOGGER.info("sending coppy to: " + mail.getToCC());
         }else {
-            LOGGER.info("Field toCc is Empty");
+            LOGGER.error("Field toCc is Empty");
         }
+
         try {
             javaMailSender.send(createMailMessage(mail));
 
             LOGGER.info("Email has been sent.");
         } catch (MailException e) {
-            LOGGER.info("Failed to process email sending: ", e.getMessage(), e);
+            LOGGER.error("Failed to process email sending: ", e.getMessage(), e);
         }
     }
 

@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Getter
 @AllArgsConstructor
+@Getter
 @NoArgsConstructor
 public class Mail {
     private String mailTo;
@@ -13,9 +13,9 @@ public class Mail {
     private String message;
     private String toCC;
 
-    public Mail(  String mailTo, String subject, String message){
-        this.mailTo = getMailTo();
-        this.subject = getSubject();
-        this.message = getMessage();
+    public Mail(String mailTo, String subject, String message){
+        this.mailTo = mailTo;
+        this.subject = subject;
+        this.message = message;
     }
 }

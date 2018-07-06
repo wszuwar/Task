@@ -14,8 +14,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/trello")
 public class TrelloController {
-    @Autowired
-    private TrelloClient trelloClient;
 
     @Autowired
     private TrelloService trelloService;
@@ -31,10 +29,10 @@ public class TrelloController {
 //                .filter(b->b.getId()!=null)
 //                .forEach(trelloBoardDto -> System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName()));
 
-
     }
+
     @RequestMapping(method = RequestMethod.POST, value = "/createTrelloCard")
-    public CreatedTrelloCard createdTrelloCard(@RequestBody TrelloCardDto trelloCardDto){
+    public CreatedTrelloCard createTrelloCard(@RequestBody TrelloCardDto trelloCardDto){
         return trelloService.createTrelloCard(trelloCardDto);
     }
 
