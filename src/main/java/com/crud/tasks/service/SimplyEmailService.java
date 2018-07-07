@@ -21,28 +21,24 @@ public class SimplyEmailService {
 
     public void send(final Mail mail) {
         LOGGER.info("Starting email preparation...");
-        if (mail.getToCC()!=null){
-            createMailMessage(mail).setCc(mail.getToCC());
-            LOGGER.info("sending coppy to: " + mail.getToCC());
-        }else {
-            LOGGER.error("Field toCc is Empty");
-        }
-
         try {
             javaMailSender.send(createMailMessage(mail));
-
             LOGGER.info("Email has been sent.");
         } catch (MailException e) {
             LOGGER.error("Failed to process email sending: ", e.getMessage(), e);
         }
     }
-
     private SimpleMailMessage createMailMessage(final Mail mail) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(mail.getMailTo());
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
-
+        if (mail.getToCC()!=null){
+            mailMessage.setCc(mail.getToCC());
+            LOGGER.info("sending coppy to: " + mail.getToCC());
+        }else {
+            LOGGER.error("Field toCc is Empty");
+        }
         return mailMessage;
 
     }
