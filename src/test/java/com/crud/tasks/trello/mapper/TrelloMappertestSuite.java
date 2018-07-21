@@ -4,6 +4,10 @@ package com.crud.tasks.trello.mapper;
 import com.crud.tasks.domain.*;
 import com.crud.tasks.mapper.TrelloMapper;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -12,10 +16,12 @@ import static org.junit.Assert.assertNotEquals;
 import java.util.Arrays;
 import java.util.List;
 
-
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class TrelloMappertestSuite {
 
-    private TrelloMapper trelloMapper = new TrelloMapper();
+    @Autowired
+     TrelloMapper trelloMapper;
 
     @Test
     public void testMapToBoardDto() {
