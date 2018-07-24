@@ -41,5 +41,22 @@ public class SimplyEmailServiceTest {
         //Then
       verify(javaMailSender, times(1)).send(mailMessage);
     }
+    @Test
+    public void shouldSendEmailToCC(){
+        //Given
+        Mail mail = new Mail("marekszymulakodilla@gmail.com","Test","Test message","somemail@.com");
+
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(mail.getMailTo());
+        mailMessage.setSubject(mail.getSubject());
+        mailMessage.setText(mail.getMessage());
+        mailMessage.setCc(mail.getToCC());
+
+        //When
+        simplyEmailService.send(mail);
+
+        //Then
+        verify(javaMailSender, times(1)).send(mailMessage);
+    }
 
 }

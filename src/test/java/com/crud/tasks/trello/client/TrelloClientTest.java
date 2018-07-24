@@ -1,8 +1,6 @@
 package com.crud.tasks.trello.client;
 
-import com.crud.tasks.domain.CreatedTrelloCardDto;
-import com.crud.tasks.domain.TrelloBoardDto;
-import com.crud.tasks.domain.TrelloCardDto;
+import com.crud.tasks.domain.*;
 import com.crud.tasks.trello.config.TrelloConfig;
 import org.junit.Before;
 import org.junit.Test;
@@ -53,8 +51,8 @@ public class TrelloClientTest {
 
         //Then
         assertEquals(1,fetchedTrelloBoards.size());
-        assertEquals("test_id",fetchedTrelloBoards.get(0).getId());
-        assertEquals("test_board",fetchedTrelloBoards.get(0).getName());
+        assertEquals("test_board",fetchedTrelloBoards.get(0).getId());
+        assertEquals("test_id",fetchedTrelloBoards.get(0).getName());
         assertEquals(new ArrayList<>(),fetchedTrelloBoards.get(0).getLists());
 
     }
@@ -74,9 +72,12 @@ public class TrelloClientTest {
         CreatedTrelloCardDto createdTrelloCardDto = new CreatedTrelloCardDto(
                 "1",
                 "Test task",
-                "http://test.com"
+                "http://test.com",
+                new Badges(1,
+                        new AttachmentsByType(
+                                new Trello(1, 2)
+                        ))
         );
-
         when(restTemplate.postForObject(uri,null,CreatedTrelloCardDto.class)).thenReturn(createdTrelloCardDto);
 
         //When
