@@ -177,7 +177,9 @@ public class TaskControllerTest {
                 .content(jsonContent))
                 .andExpect(status().is(200));
         verify(dbService, times(1)).saveTask(task);
+        verify(taskMapper,times(1)).mapToTask(any(TaskDto.class));
         verifyNoMoreInteractions(dbService);
+        verifyNoMoreInteractions(taskMapper);
 
 
     }
