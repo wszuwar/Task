@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" ></meta>
+    <meta charset="UTF-8"  />
     <title>My welcome page</title>
 </head>
 <body>
         <h1>First impresion of my page</h1>
         <!--/*@thymesVar id="variable" type="com.crud.tasks.controller.StaticWebPageController"*/-->
 <span th:text="${variable}"></span>
-<br></br>
+<br />
         <!--/*@thymesVar id="one" type="com.crud.tasks.controller.StaticWebPageController"*/-->
         <!--/*@thymesVar id="two" type="com.crud.tasks.controller.StaticWebPageController"*/-->
         <!--/*@thymesVar id="multiply" type="com.crud.tasks.controller.StaticWebPageController"*/-->
@@ -17,11 +17,11 @@
         <!--/*@thymesVar id="add" type="com.crud.tasks.controller.StaticWebPageController"*/-->
         <!--/*@thymesVar id="result" type="com.crud.tasks.controller.StaticWebPageController"*/-->
     <span th:text="${one} + ${two}"></span>
-<br></br>
+<br />
 <span  th:text="${number} + ${multiply} + ${number} + ${result} + ${two} * ${two}"></span>
-<br></br>
+<br />
 <span th:text="(${number} + ${multiply} + ${number} + ${add} + ${number} + ${result}) + (${two} * ${two} + ${two})"></span>
-<br></br>
+<br />
 <span th:text="(${number} + ${substract} + ${number} + ${multiply} + ${number} + ${result}) + (${two} - ${two} * ${two})"></span>
 
     </body>
