@@ -24,6 +24,18 @@ public class SimplyEmailService {
     @Autowired
     private MailCreatorService mailCreatorService;
 
+    @Autowired
+    private SheduledMailCreatorService sheduledMailCreatorService;
+
+    public void sendSheduled(final Mail mail) {
+        LOGGER.info("Starting email preparation...");
+        try {
+            javaMailSender.send(createMimeSheduleMessage(mail));
+            LOGGER.info("Email has been sent.");
+        } catch (MailException e) {
+            LOGGER.error("Failed to process email sending: ", e.getMessage(), e);
+        }
+    }
     public void send(final Mail mail) {
         LOGGER.info("Starting email preparation...");
         try {
@@ -40,6 +52,15 @@ public class SimplyEmailService {
             messageHelper.setSubject(mail.getSubject());
             messageHelper.setText(mailCreatorService.buildTrelloCardEmail(mail.getMessage()),true);
         } ;
+    }
+
+    private MimeMessagePreparator createMimeSheduleMessage(final Mail mail){
+        return mimeSheduledMessage -> {
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeSheduledMessage);
+            mimeMessageHelper.setTo(mail.getMailTo());
+            mimeMessageHelper.setSubject(mail.getSubject());
+            mimeMessageHelper.setText(sheduledMailCreatorService.buildSheduledEmail(mail.getMessage()),true);
+        };
     }
 
 
