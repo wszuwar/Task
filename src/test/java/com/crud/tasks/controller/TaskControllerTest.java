@@ -95,7 +95,7 @@ public class TaskControllerTest {
         when(taskMapper.mapToTaskDto(task)).thenReturn(taskDto);
 
         //When & Then
-        mockMvc.perform(get("/v1/tasks/{taskId}", task.getId()).contentType(MediaType.APPLICATION_JSON).param(
+        mockMvc.perform(get("/v1/tasks/1").contentType(MediaType.APPLICATION_JSON).param(
                 "taskId", "1")
         )
                 .andExpect(status().isOk())
@@ -115,8 +115,7 @@ public class TaskControllerTest {
 
 
         doNothing().when(dbService).deleteTask(task.getId());
-String deleting = "/v1/tasks/{taskId}";
-        mockMvc.perform(delete("/v1/tasks/{taskId}", task.getId())
+        mockMvc.perform(delete("/v1/tasks/1")
                 .param("taskId", "1"))
                 .andExpect(status().isOk());
         verify(dbService, times(1)).deleteTask(task.getId());
